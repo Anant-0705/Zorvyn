@@ -53,9 +53,8 @@ export function LandingPage() {
           <div className="max-w-[1400px] mx-auto px-5 md:px-8 w-full grid lg:grid-cols-12 gap-12 items-center relative z-10">
             <div className="lg:col-span-7 space-y-8 md:space-y-10">
               <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-surface-container-high border border-outline-variant/20">
-                <span className="flex h-2 w-2 rounded-full bg-tertiary animate-pulse"></span>
-                <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant">The Future of Expense Tracking</span>
-              </div>
+          
+                </div>
               <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-extrabold font-headline leading-[0.95] text-on-surface tracking-[-0.03em]">
                 Shared <br />
                 <span className="text-reveal">Finances</span> <br />
