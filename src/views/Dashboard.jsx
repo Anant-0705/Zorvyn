@@ -16,65 +16,90 @@ export function Dashboard() {
 
   if (!transactions.length) {
     return (
-      <Card>
-        <EmptyState
-          title="No financial records yet"
-          description="Add your first transaction to start building your dashboard summary and charts."
-        />
-      </Card>
+      <div className="max-w-[1100px] mx-auto w-full">
+         <Card>
+           <EmptyState
+             title="No financial records yet"
+             description="Add your first transaction to start building your dashboard summary and charts."
+           />
+         </Card>
+      </div>
     )
   }
 
   return (
-    <div className="view-grid">
-      <section className="summary-grid">
-        <Card title="Total Balance" className="metric-card">
-          <div className="metric-row">
-            <Wallet size={18} />
-            <strong>{moneyFormatter.format(dashboardSummary.balance)}</strong>
+    <div className="max-w-[1100px] mx-auto w-full space-y-6 pb-20">
+      {/* Overview section matches aesthetic with large fonts and tight design */}
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+        <Card className="flex flex-col justify-between h-[135px] md:h-[155px]">
+          <div>
+            <div className="flex items-center gap-2 mb-2 text-on-surface-variant font-semibold text-[10.5px] tracking-wider uppercase">
+               <Wallet size={15} /> Total Balance
+            </div>
           </div>
-          <p className="metric-caption">Current net position</p>
+          <div>
+             <h2 className="font-headline font-extrabold text-3xl md:text-[42px] tracking-tighter text-on-surface">
+               {moneyFormatter.format(dashboardSummary.balance)}
+             </h2>
+             <p className="text-[11px] md:text-xs text-on-surface-variant mt-0 font-medium">Current net position</p>
+          </div>
         </Card>
 
-        <Card title="Income" className="metric-card">
-          <div className="metric-row income">
-            <ArrowUpCircle size={18} />
-            <strong>{moneyFormatter.format(dashboardSummary.income)}</strong>
+        <Card className="flex flex-col justify-between h-[135px] md:h-[155px]">
+          <div>
+            <div className="flex items-center gap-1.5 bg-[#eaffe2]/60 text-[#12661e] w-max px-2.5 py-1.5 rounded-md font-bold text-[9px] tracking-widest uppercase">
+               <ArrowUpCircle size={14} className="stroke-[2.5]" /> Income
+            </div>
           </div>
-          <p className="metric-caption">Total money coming in</p>
+          <div>
+             <h2 className="font-headline font-extrabold text-2xl md:text-[32px] tracking-tight text-on-surface">
+               {moneyFormatter.format(dashboardSummary.income)}
+             </h2>
+             <p className="text-[11px] md:text-xs text-on-surface-variant mt-0 font-medium">Total money coming in</p>
+          </div>
         </Card>
 
-        <Card title="Expenses" className="metric-card">
-          <div className="metric-row expense">
-            <ArrowDownCircle size={18} />
-            <strong>{moneyFormatter.format(dashboardSummary.expenses)}</strong>
+        <Card className="flex flex-col justify-between h-[135px] md:h-[155px]">
+          <div>
+            <div className="flex items-center gap-1.5 text-[#cc2a2a] bg-[#fff0f0] w-max px-2.5 py-1.5 rounded-md font-bold text-[9px] tracking-widest uppercase">
+               <ArrowDownCircle size={14} className="stroke-[2.5]" /> Expenses
+            </div>
           </div>
-          <p className="metric-caption">Total money going out</p>
+          <div>
+             <h2 className="font-headline font-extrabold text-2xl md:text-[32px] tracking-tight text-on-surface">
+               {moneyFormatter.format(dashboardSummary.expenses)}
+             </h2>
+             <p className="text-[11px] md:text-xs text-on-surface-variant mt-0 font-medium">Total money going out</p>
+          </div>
         </Card>
       </section>
 
-      <section className="chart-grid">
+      <section className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-6">
         <Card
           title="Balance Trend Over Time"
           subtitle="Monthly income, expenses, and running balance"
-          className="chart-card"
+          className="min-h-[380px]"
         >
-          <TrendChart data={trendData} />
+          <div className="h-[300px] w-full mt-4">
+            <TrendChart data={trendData} />
+          </div>
         </Card>
 
         <Card
           title="Spending Breakdown"
           subtitle="Expense categories represented in multiple colors"
-          className="chart-card"
+          className="min-h-[380px]"
         >
-          {expenseBreakdown.length ? (
-            <DonutChart data={expenseBreakdown} />
-          ) : (
-            <EmptyState
-              title="No expense data"
-              description="Your donut chart appears once there are expense transactions."
-            />
-          )}
+          <div className="h-[300px] w-full mt-4">
+            {expenseBreakdown.length ? (
+              <DonutChart data={expenseBreakdown} />
+            ) : (
+              <EmptyState
+                title="No expense data"
+                description="Your donut chart appears once there are expense transactions."
+              />
+            )}
+          </div>
         </Card>
       </section>
     </div>
